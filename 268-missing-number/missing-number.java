@@ -1,20 +1,18 @@
 class Solution {
     public int missingNumber(int[] nums) {
-            int n1 = nums.length;
-        int [] arr =new int [n1+1];
-        int j = -1;
-        for(int i : nums)
-        {  
-            arr[i]++;
-            
-        }
+            int xor1 =0;
+            int xor2=0;
+            int n = nums.length;
+            for(int i=1;i<n+1;i++)
+            {
+                xor1=xor1^i;
+            }
+             for(int i=0;i<n;i++)
+            {
+                xor2=xor2^nums[i];
+            }
 
-        for(int k=0 ;k<arr.length;k++)
-        {if(arr[k]==0)
-        j=k;
-        }
-
-        return j;
+            return xor1^xor2;
         
     }
 }
