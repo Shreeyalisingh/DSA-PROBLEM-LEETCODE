@@ -1,22 +1,32 @@
 class Solution {
-    //Hashing
+    //Moore's voting algo
     public int majorityElement(int[] nums) {
- 
- HashMap <Integer,Integer> mpp = new HashMap<>();
- int n=nums.length;
- for(int i=0;i<nums.length;i++)
- {
-    int value = mpp.getOrDefault(nums[i],0);
-    mpp.put(nums[i],value + 1);
+        int count = 0;
+        int element = 0;
 
- }
+        for(int i =0;i<nums.length;i++)
+        {
+            if(count==0)
+            element=nums[i];
 
- for( Map.Entry<Integer,Integer>c:mpp.entrySet())
- {
-    if(c.getValue()>n/2)
-    return c.getKey();
- }
+            if(nums[i]==element)
+            count++;
+            else
+            count--;
+        }
+        int c1=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==element)
+            c1++;
         
-   return -1;     
+
+        }
+    if(c1>nums.length/2)
+    return element;
+ 
+      return -1;  
+       
     }
+
 }
