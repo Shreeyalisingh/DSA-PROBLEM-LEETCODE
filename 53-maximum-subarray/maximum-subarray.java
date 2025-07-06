@@ -1,15 +1,19 @@
 class Solution {
     public int maxSubArray(int[] arr) {
+        //kadane algo
+int maxi=Integer.MIN_VALUE;
+int sum=0;
+for(int i=0;i<arr.length;i++){
+    sum = arr[i]+sum;
 
-        int current = arr[0];
-        int maximum = arr[0];
+    if(sum>maxi)
+        maxi=sum;
 
-        for (int i = 1; i < arr.length; i++) {
-            current = Math.max(current + arr[i], arr[i]);
-            maximum = Math.max(maximum, current);
-        }
+    if(sum<0)
+        sum=0;
+    }
 
-        return maximum;
+return maxi;
         
     }
 }
