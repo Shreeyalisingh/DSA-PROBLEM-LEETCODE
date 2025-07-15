@@ -1,29 +1,47 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-        int n = nums.length;
-        int i = n - 2;
-        for (; i >= 0; --i) {
-            if (nums[i] < nums[i + 1]) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+       
+        for (int num : nums) {
+            list.add(num);
+        }
+
+        int index = -1;
+
+      
+        for (int i = list.size() - 2; i >= 0; i--) {
+            if (list.get(i) < list.get(i + 1)) {
+                index = i;
                 break;
             }
         }
-        if (i >= 0) {
-            for (int j = n - 1; j > i; --j) {
-                if (nums[j] > nums[i]) {
-                    swap(nums, i, j);
-                    break;
-                }
+
+        if (index == -1) {
+            Collections.reverse(list);
+            for (int i = 0; i < nums.length; i++) {
+                nums[i] = list.get(i);
+            }
+            return;
+        }
+
+       
+        for (int i = list.size() - 1; i > index; i--) {
+            if (list.get(i) > list.get(index)) {
+                int temp = list.get(i);
+                list.set(i, list.get(index));
+                list.set(index, temp);
+                break;
             }
         }
 
-        for (int j = i + 1, k = n - 1; j < k; ++j, --k) {
-            swap(nums, j, k);
-        }
-    }
+        
+        List<Integer> newlist = list.subList(index + 1, list.size());
+        Collections.sort(newlist);
 
-    private void swap(int[] nums, int i, int j) {
-        int t = nums[j];
-        nums[j] = nums[i];
-        nums[i] = t;
+        
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = list.get(i);
+        }
     }
 }
