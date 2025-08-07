@@ -9,13 +9,11 @@
  * }
  */
 import java.util.PriorityQueue;
-// Imports required by the testing environment for parsing JSON input.
+
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonValue;
 
-/**
- * Definition for singly-linked list.
- */
+
 class ListNode {
     int val;
     ListNode next;
@@ -24,10 +22,7 @@ class ListNode {
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 
-    /**
-     * This is the missing helper method that the testing environment needs.
-     * It converts a JsonArray (e.g., [1, 4, 5]) into a linked list (1->4->5).
-     */
+    
     public static ListNode arrayToListNode(JsonArray arr) {
         if (arr == null || arr.isEmpty()) {
             return null;
