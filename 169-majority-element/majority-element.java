@@ -1,31 +1,27 @@
 class Solution {
-    //Moore's voting algo
+    //Hashmap
     public int majorityElement(int[] nums) {
-        int count = 0;
-        int element = 0;
-
-        for(int i =0;i<nums.length;i++)
-        {
-            if(count==0)
-            element=nums[i];
-
-            if(nums[i]==element)
-            count++;
-            else
-            count--;
+        int maxi = Integer.MIN_VALUE;
+        int n = nums.length;
+        int ans = -1;
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int i : nums)
+        {   if(hm.containsKey(i))
+            hm.put(i,hm.get(i)+1);
+            else 
+            hm.put(i,1);
         }
-        int c1=0;
-        for(int i=0;i<nums.length;i++)
-        {
-            if(nums[i]==element)
-            c1++;
-        
 
+        Set<Integer> entry = hm.keySet();
+        for(int i : entry){
+            if(hm.get(i)>maxi && hm.get(i)>n/2)
+            {
+            maxi = hm.get(i);
+            ans = i;
+            }
         }
-    if(c1>nums.length/2)
-    return element;
- 
-      return -1;  
+            
+        return ans;
        
     }
 
